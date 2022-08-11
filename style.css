@@ -1,0 +1,45 @@
+.btn{
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-decoration: none;
+  border: 2px solid #764abc;
+  color:#764abc;
+  padding : 10px 20px;
+  border-radius: 25px;
+  transition: all 1s;
+  /*to hide any element that overflows from the button container we use overflow:hidden
+  this will hide the translated psedo element and only show it when it moves back to positon*/
+  overflow: hidden;
+
+}
+
+.btn::before{
+  /*we set its position to absolute which removes it from its normal flow
+  we set the coordinates for top and left to 0 which pins the empty pseudo element to the button at those exact locations
+  we set the width and height to be exactly 100% of the parent making it the same size as the button
+  we made the pseudo element background the same color as the button*/
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #764abc;
+   transition: all 1s;
+  /*we use z-index to change their stacking context
+  then we use the translate property to move this pseudo element to the left by -100%*/
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+.btn:hover::before{
+  /*let the pseudo element go back to its original position on button hover*/
+  transform: translateX(0);
+}
+
+.btn:hover{
+  color: #fff;
+}
